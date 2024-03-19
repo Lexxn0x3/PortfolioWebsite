@@ -1,9 +1,8 @@
 name: Deploy Astro Site to GitHub Pages
 
 on:
-  push:
-    branches:
-      - main  # Set this to your default branch
+  release:
+    types: [published]
 
 jobs:
   build-and-deploy:
