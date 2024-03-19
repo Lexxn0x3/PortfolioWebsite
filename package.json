@@ -21,6 +21,6 @@
   },
   "scripts": {
     "deploy": "gh-pages -d dist -r git@github.com:Lexxn0x3/PortfolioWebsite.git -t true",
-    "test": "echo \"No testss specified\" && exit 0"
+    "test": "echo \"No tests specified\" && exit 0"
   }  
 }
