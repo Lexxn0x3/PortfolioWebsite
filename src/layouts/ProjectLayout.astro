@@ -1,0 +1,96 @@
+---
+import Layout from "../layouts/Layout.astro";
+import BackButton from "../components/BackButton.astro";
+import AnarenSamples from "../components/AnarenSamples.astro";
+
+const {frontmatter} = Astro.props;
+---
+
+<style is:global>
+  /* Make all text default to white */
+body {
+  color: white;
+}
+/* Add some spacing below all headings */
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 20px;
+}
+/* Specific font sizes for different headings */
+h1 {
+  font-size: 2em;
+}
+h2 {
+  font-size: 1.75em;
+}
+h3 {
+  font-size: 1.5em;
+}
+/* Adjust paragraph spacing */
+p {
+  margin-bottom: 15px;
+}
+/* Style lists */
+ul, ol {
+  margin-bottom: 20px;
+  padding-left: 20px;
+}
+/* Style links */
+a {
+  color: cyan; /* Change link color to cyan */
+  text-decoration: underline;
+}
+/* Style images */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto 20px;
+}
+.tags-list {
+  list-style: none;
+  padding: 0;
+  margin: 0; /* Adjust as needed */
+}
+
+.tag-item {
+  display: inline-block;
+  background-color: #242aa3;
+  color: #ffffff;
+  padding: 5px 10px;
+  margin-right: 5px;
+  border-radius: 12px;
+  border: 2px solid #1db998; /* Solid cyan boundary */
+  /* Additional styling */
+}
+</style>
+
+<Layout title={frontmatter.title}>
+    <div class="max-w-screen-md m-auto p-4 my-4 antialiased">
+      <h1 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-white">
+        {frontmatter.subtitle}
+        <br />
+        <span class="text-gradient">
+          {frontmatter.title}
+        </span>
+      </h1>
+
+      {frontmatter.tags?.length > 0 && (
+        <ul class="tags-list"> <!-- Add a class name here -->
+          {frontmatter.tags.map((tag) => (
+            <li class="tag-item" key={tag}>{tag}</li> <!-- And here, if you wish -->
+          ))}
+        </ul>
+      )}
+      <br />
+      
+    <img loading="lazy" class="sample" src={frontmatter.image} alt={frontmatter.title}>
+    
+    <slot /> <!-- Markdown content is injected here -->
+      <!-- ... -->
+
+    <BackButton />
+</div>
+</Layout>
+
+<style>
+</style>
