@@ -1,9 +1,8 @@
 name: Deploy Astro Site to GitHub Pages
 
 on:
-  push:
-    branches:
-      - main  # Set this to your default branch
+  release:
+    types: [published]
 
 jobs:
   build-and-deploy:
@@ -16,6 +15,14 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '14'  # Set this to the Node.js version you're using
+      - name: Print working directory
+        run: pwd
+
+      - name: List files in the current directory
+        run: ls -lah
+      
+      - name: Display the build script
+        run: cat package.json | grep build
 
       - name: Install Dependencies
         run: npm install
